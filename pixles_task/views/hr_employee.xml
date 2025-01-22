@@ -1,0 +1,54 @@
+<odoo>
+    <!-- Form view enhancement -->
+    <record id="view_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='work_email']" position="after">
+                <field name="github_account"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='hr_settings']" position="after">
+                <page name="collaborated_projects" string="Collaborated Projects">
+                    <field name="project_collaborator_ids">
+                        <tree editable="bottom" decoration-success="status == 'active'"
+                              decoration-danger="status == 'inactive'">
+                            <field name="project_id"/>
+                            <field name="status"/>
+                            <button name="action_set_active" type="object" string="Set Active"
+                                    attrs="{'invisible': [('status', '=', 'active')]}"/>
+                            <button name="action_set_inactive" type="object" string="Set Inactive"
+                                    attrs="{'invisible': [('status', '=', 'inactive')]}"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree view enhancement -->
+    <record id="view_employee_tree_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.tree.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='work_email']" position="after">
+                <field name="github_account"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--    &lt;!&ndash; Kanban view enhancement &ndash;&gt;-->
+    <!--    <record id="view_employee_kanban_inherit" model="ir.ui.view">-->
+    <!--        <field name="name">hr.employee.kanban.inherit</field>-->
+    <!--        <field name="model">hr.employee</field>-->
+    <!--        <field name="inherit_id" ref="hr.view_employee_kanban" />-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <xpath expr="//div[contains(@class, 'oe_kanban_details')]" position="inside">-->
+    <!--                <div>-->
+    <!--                    <strong>GitHub Account:</strong> <span t-field="record.github_account" />-->
+    <!--                </div>-->
+    <!--            </xpath>-->
+    <!--        </field>-->
+    <!--    </record>-->
+</odoo>
