@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 {
     'name': "pixels task",
-
     'author': "Eslam Eid 01101562930",
     'website': "http://www.yourcompany.com",
     'category': 'Uncategorized',
